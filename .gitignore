@@ -127,3 +127,5 @@ dist
 
 # Custom
 credentials
+.terraform
+*.tfstate*
