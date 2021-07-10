@@ -5,13 +5,14 @@ const requestLogger = (req, res, next) => {
 }
 
 const schemaValidationMiddleware = (schema) => (req, res, next) => {
-  const {error} = schema.validate(req.body)
+  const {value, error} = schema.validate(req.body)
   if (error != null) {
     res.status(400).send({
       error: error.details.map(detail => detail.message).join(', ')
     })
   }
   else {
+    req.body = value
     next()
   }
 }

@@ -1,5 +1,5 @@
 const express = require('express')
-require('dotenv').config()
+require('dotenv').config({path: (process.env.ENV = 'local' ? './.local.env' : '.env')})
 const bodyParser = require('body-parser')
 
 const router = require('./router')
@@ -13,4 +13,4 @@ app.use(middleware.requestLogger)
 app.use('/', router)
 
 const PORT = process.env.PORT || 3000
-app.listen(PORT, console.log.bind(`Listening on PORT ${PORT}`))
+app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`))
