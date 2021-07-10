@@ -83,3 +83,11 @@ resource "aws_instance" "main_instance" {
   subnet_id = aws_subnet.public_subnet.id
   key_name = aws_key_pair.main_kp.key_name
 }
+
+resource "aws_sqs_queue" "main_queue" {
+  name = "main_queue.fifo"
+  fifo_queue = true
+  visibility_timeout_seconds = 30
+  receive_wait_time_seconds = 20
+  content_based_deduplication = true
+}

@@ -1,5 +1,6 @@
 const postgresDriver = require('./drivers/postgresDriver')
 const {PREDICTIONS_TABLE_NAME} = require('./common/constants')
+const sqsDriver = require('./drivers/sqsDriver')
 
 const uploadImage = async (req, res, next) => {
   const body = req.body
@@ -10,6 +11,8 @@ const uploadImage = async (req, res, next) => {
   )
 
   res.status(200).send(rows[0])
+
+  sqsDriver.getInstance().sendMessageAsync(JSON.stringify({message: "HELLO WORLD"}))
 }
 
 const getURL = async (req, res, next) => {

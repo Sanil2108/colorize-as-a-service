@@ -25,16 +25,17 @@ class PostgresDriver {
 
 let driver
 
-function getInstance() {
-  if (driver == null) {
-    driver = new PostgresDriver()
-    driver.initialize()
-  }
+async function initialize() {
+  driver = new PostgresDriver()
+  await driver.initialize()
+}
 
+function getInstance() {
   return driver
 }
 
 
 module.exports = {
-  getInstance
+  getInstance,
+  initialize
 }
