@@ -12,7 +12,7 @@ const uploadImage = async (req, res, next) => {
 
   res.status(200).send(rows[0])
 
-  sqsDriver.getInstance().sendMessageAsync(JSON.stringify({imageURL: body.imageURL, predictionId: rows[0].predictionId}))
+  sqsDriver.getInstance().sendMessageAsync(JSON.stringify({imageURL: body.imageURL, predictionId: rows[0].predictionid}))
 }
 
 const getURL = async (req, res, next) => {

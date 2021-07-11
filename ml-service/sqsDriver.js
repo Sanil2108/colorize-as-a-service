@@ -36,7 +36,7 @@ class SQSDriver {
     return response.Messages && response.Messages.length > 0
       ? response.Messages.map((message) => ({
           receiptHandle: message.ReceiptHandle,
-          body: message.Body,
+          body: JSON.parse(message.Body),
         }))
       : [];
   }
@@ -47,7 +47,7 @@ class SQSDriver {
       ReceiptHandle: receiptHandle,
     });
 
-    const response = await this.sqsClient.send(command);
+    await this.sqsClient.send(command);
   }
 }
 

@@ -15,6 +15,7 @@ async function pollMessages() {
 }
 
 function onMessageReceive(message) {
+  postgresDriver.getInstance().query(`UPDATE predictions SET prediction_complete = true WHERE id = $1;`, message.body.predictionId)
   sqsDriver.getInstance().deleteMessage(message.receiptHandle)
 }
 
