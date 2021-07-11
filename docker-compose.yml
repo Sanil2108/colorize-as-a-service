@@ -30,3 +30,9 @@ services:
     ports:
       - 9002:9002
     container_name: aws-connection
+
+  api-service:
+    build: ./api-service
+    ports:
+      - 3000:3000
+    container_name: api-service

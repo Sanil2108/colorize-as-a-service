@@ -1,5 +1,5 @@
 const express = require('express')
-require('dotenv').config({path: (process.env.ENV = 'local' ? './.local.env' : '.env')})
+require('dotenv').config({path: (process.env.ENV == 'local' ? './.local.env' : '.env')})
 const bodyParser = require('body-parser')
 
 const router = require('./router')
